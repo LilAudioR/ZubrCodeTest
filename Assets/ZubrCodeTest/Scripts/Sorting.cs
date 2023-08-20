@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using static System.String;
 
@@ -52,8 +53,8 @@ public class Sorting : MonoBehaviour
         names.Sort((a, b) => Compare(GetFirstName(a), GetFirstName(b)));
         PrintNames(names);
     }
-    
-    private static void PrintNames(List<string> nameList)
+
+    private void PrintNames(List<string> nameList)
     {
         foreach (var namesToPrint in nameList)
         {
