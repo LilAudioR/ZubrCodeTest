@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5422698fc59be4e3896a522f9b1624f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnedPrefab: {fileID: 3513558249276864621, guid: 7b599744c95d84e3ea2402e507bd8d72, type: 3}
+  spawnedPrefab: {fileID: 3513558249276864621, guid: 7b599744c95d84e3ea2402e507bd8d72, type: 3}
   particleEffect: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
   onButton: {fileID: 1842664097}
   offButton: {fileID: 674177694}

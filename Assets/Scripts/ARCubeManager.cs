@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class ARCubeManager : MonoBehaviour
 {
-    public GameObject _spawnedPrefab;
+    public GameObject spawnedPrefab;
     public GameObject particleEffect;
     public GameObject onButton;
     public GameObject offButton;
@@ -19,13 +19,13 @@ public class ARCubeManager : MonoBehaviour
     private GameObject _spawnedObject;
     private GameObject _lastSpawnedObject;
     private bool _blowEmUpMode;
-    private ARRaycastManager arrayManager;
+    private ARRaycastManager _arrayManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Start()
     {
         _blowEmUpMode = false;
-        arrayManager = GetComponent<ARRaycastManager>();
+        _arrayManager = GetComponent<ARRaycastManager>();
     }
 
     void Update()
@@ -47,20 +47,18 @@ public class ARCubeManager : MonoBehaviour
                             Random.Range(0.0f, 1.0f), 1);
                         hit.collider.GetComponent<MeshRenderer>().material.color = newColor;
                         var cubePosition = hit.collider.transform.position;
-                        Debug.Log("Colour Changed!");
                         if (_blowEmUpMode)
                         {
-                            Debug.Log("DoubleTapWorked!");
                             particleEffect = Instantiate(particleEffect, cubePosition, quaternion.identity);
-                            audioSource.PlayOneShot(clip, 1);
                             Destroy(hit.collider.gameObject);
-                            Debug.Log("prefab destroyed?");
+                            audioSource.PlayOneShot(clip, 1);
+
                         }
                     }
-                    else if (arrayManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
+                    else if (_arrayManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
                     {
                         var hitpose = hits[0].pose;
-                        _spawnedObject = Instantiate(_spawnedPrefab, hitpose.position, hitpose.rotation);
+                        _spawnedObject = Instantiate(spawnedPrefab, hitpose.position, hitpose.rotation);
                         _spawnedObject.tag = "Cube";
                     }
                 }
