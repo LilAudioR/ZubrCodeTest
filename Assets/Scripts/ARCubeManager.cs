@@ -13,7 +13,9 @@ public class ARCubeManager : MonoBehaviour
     public GameObject particleEffect;
     public GameObject onButton;
     public GameObject offButton;
-
+    public AudioSource audioSource;
+    public AudioClip clip;
+    
     private GameObject _spawnedObject;
     private GameObject _lastSpawnedObject;
     private bool _blowEmUpMode;
@@ -50,7 +52,7 @@ public class ARCubeManager : MonoBehaviour
                         {
                             Debug.Log("DoubleTapWorked!");
                             particleEffect = Instantiate(particleEffect, cubePosition, quaternion.identity);
-                            Debug.Log("particle spawned");
+                            audioSource.PlayOneShot(clip, 1);
                             Destroy(hit.collider.gameObject);
                             Debug.Log("prefab destroyed?");
                         }
